@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface StoreTableRepository extends JpaRepository<StoreTable, Long> {
     List<StoreTable> findByStore(Store store);
+
+    StoreTable findByStoreAndMyTable(Store store, MyTable myTable);
 }

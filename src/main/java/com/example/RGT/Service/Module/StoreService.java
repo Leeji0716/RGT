@@ -9,6 +9,7 @@ import com.example.RGT.Repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,5 +31,10 @@ public class StoreService {
 
     public Store getStore(Long id) throws Exception{
         return storeRepository.findById(id).orElseThrow (() -> new Exception ("store not found"));
+    }
+
+    public List<Store> getAll() {
+        List<Store> storeList = storeRepository.findAll();
+        return storeList;
     }
 }

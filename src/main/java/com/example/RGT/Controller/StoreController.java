@@ -5,16 +5,25 @@ import com.example.RGT.Service.MultiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/store")
 public class StoreController {
     private final MultiService multiService;
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getStoreList(){
+        try {
+            List<StoreResponseDTO> storeResponseDTOList = multiService.getStoreList();
+            return ResponseEntity.status(HttpStatus.OK).body(storeResponseDTOList);
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+        }
+    }
 
     @PostMapping
     public ResponseEntity<?> createStore(@RequestBody StoreRequestDTO storeRequestDTO){

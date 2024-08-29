@@ -16,8 +16,8 @@ import java.util.List;
 public class StoreTableService {
     private final StoreTableRepository storeTableRepository;
 
-    public StoreTable getTable(Long i) throws Exception {
-        return storeTableRepository.findById(i).orElseThrow (() -> new Exception ("storeTable not found"));
+    public StoreTable getTable(Long storeTableId) throws Exception {
+        return storeTableRepository.findById(storeTableId).orElseThrow(() -> new Exception ("store table not found"));
     }
 
     public StoreTableResponseDTO StoreTableDTO(StoreTable storeTable){

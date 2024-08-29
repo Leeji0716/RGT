@@ -64,7 +64,7 @@ public class MultiService {
             return UserResponseDTO.builder().response("login success").build();
         } else {
             loginManager.setLoggedIn(false);
-            return UserResponseDTO.builder().response("login failed").build();
+            throw new Exception("login failed");
         }
     }
 
@@ -377,6 +377,20 @@ public class MultiService {
             MyOrder myOrder = myOrderService.getMyOrder(orderId);
             List<OrderMenuDTO> orderMenuDTOList = orderMenuService.OrderMenuDTOList(myOrder.getOrderMenus());
             return myOrderService.OrderDTO(myOrder, orderMenuDTOList);
+        }
+        return null;
+    }
+
+    public List<StoreResponseDTO> getStoreList() throws Exception{
+        if(loginIO()){
+            List<Store> stores = storeService.getAll();
+            List<StoreResponseDTO> storeResponseDTOList = new ArrayList<>();
+            for (Store store : stores){
+                List<StoreTable> storeTables = store.getStoreTables();
+                List<StoreTableResponseDTO> storeTableResponseDTOList = storeTableService.StoreTableDTOList(storeTables);
+                storeResponseDTOList.add(storeService.storeDTO(store, storeTableResponseDTOList));
+            }
+            return storeResponseDTOList;
         }
         return null;
     }

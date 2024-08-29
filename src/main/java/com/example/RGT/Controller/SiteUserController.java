@@ -1,18 +1,15 @@
 package com.example.RGT.Controller;
 
-import com.example.RGT.DTO.StoreTableResponseDTO;
-import com.example.RGT.Entity.StoreTable;
 import com.example.RGT.Service.MultiService;
 import com.example.RGT.DTO.UserRequestDTO;
 import com.example.RGT.DTO.UserResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class SiteUserController {

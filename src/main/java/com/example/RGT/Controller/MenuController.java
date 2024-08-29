@@ -6,10 +6,9 @@ import com.example.RGT.Service.MultiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/menu")
 public class MenuController {
@@ -24,17 +23,6 @@ public class MenuController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
         }
     }
-//
-//    @GetMapping
-//    public ResponseEntity<?> getMenu(@RequestHeader("menuId") Long menuId){
-//        try {
-//            MenuResponseDTO menuResponseDTO = multiService.getMenu(menuId);
-//            return ResponseEntity.status(HttpStatus.OK).body(menuResponseDTO);
-//        }catch (Exception ex){
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
-//        }
-//    }
-
     @PutMapping
     public ResponseEntity<?> updateMenu(@RequestHeader("menuId") Long menuId, @RequestBody MenuRequestDTO menuRequestDTO){
         try {
